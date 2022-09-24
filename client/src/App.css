@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,600;1,500;1,600&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Mulish', sans-serif;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  background-color: #555;
+  background-position: center;
+  background-size: cover;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.281);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
