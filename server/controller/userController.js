@@ -27,9 +27,11 @@ const createUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      picture: user.picture,
+      password: user.password,
+      pic: user.picture,
       token: generateToken(user._id),
     });
+    // console.log(pic)
   } else {
     res.status(404);
     throw new Error("Failed to create user");
