@@ -4,6 +4,7 @@ const connectDB = require("./config/db");
 const colors = require("colors");
 
 const userRoutes = require("./routes/userRoute");
+const chatRoutes = require("./routes/chatRoutes");
 
 const { notFound, errorHandler } = require("./middleware/error");
 
@@ -15,6 +16,8 @@ const app = Express();
 app.use(Express.json()); // to accept JSON data
 
 app.use("/api/user", userRoutes);
+app.use("/api/chat", chatRoutes);
+
 
 app.use(notFound);
 app.use(errorHandler);

@@ -11,7 +11,7 @@ const createUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Please enter all the fields");
   }
-  
+
   // check if the user exit
   const userExists = await User.findOne({ email });
   // if it exists throw an eror
@@ -55,4 +55,23 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   }
 });
-module.exports = { createUser, loginUser };
+
+// get User
+const allUsers = asyncHandler(async (req, res) => {
+  const keyword = req.query.search
+    ? {
+        $or: [
+          { name: { $regex: req.query.search, $options: "i" } },
+          { email: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+
+  const users = await User.find(keyword).find({
+    _id: { $ne: req.user._id },
+  });
+  res.send(users);
+  // console.log(keyword);
+});
+
+module.exports = { createUser, loginUser, allUsers };
