@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   Box,
@@ -14,6 +15,16 @@ import Login from "../components/authentication/Login";
 import SignUp from "../components/authentication/SignUp";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (user) {
+      navigate("/");
+    }
+  }, [navigate]);
+
   return (
     <Container maxW="xl" centerContent>
       <Box

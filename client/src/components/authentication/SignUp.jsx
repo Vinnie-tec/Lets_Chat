@@ -22,7 +22,6 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
   let [pic, setPic] = useState();
-  let [pics, setPics] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
@@ -109,7 +108,7 @@ const SignUp = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/user/signup",
+        "/api/user",
         { name, email, password, pic },
         config
       );
@@ -123,7 +122,7 @@ const SignUp = () => {
       });
       setLoading(false);
       localStorage.setItem("userInfo", JSON.stringify(data));
-      navigate("/a");
+      navigate("/chat");
     } catch (error) {
       toast({
         title: "Error occur",
