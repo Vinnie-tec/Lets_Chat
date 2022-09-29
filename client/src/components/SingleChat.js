@@ -9,7 +9,7 @@ import axios from "axios";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import ProfileModal from "./miscellaneous/ProfileModal";
 import ScrollableChat from "./ScrollableChat";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import animationData from "../animation/typing.json";
 
 import io from "socket.io-client";
