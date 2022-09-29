@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { ViewIcon } from "@chakra-ui/icons";
 import {
   Modal,
@@ -17,7 +18,6 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useState } from "react";
 import { ChatState } from "../../context/ChatProvider";
 import UserBadgeItem from "../userAvatar/UserBadgeItem";
 import UserListItem from "../userAvatar/UserListItem";

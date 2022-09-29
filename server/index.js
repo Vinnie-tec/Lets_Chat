@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running..");
   });
 }
-// 
+//   "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
 
 app.use(notFound);
 app.use(errorHandler);
