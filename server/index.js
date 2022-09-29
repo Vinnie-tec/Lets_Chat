@@ -2,6 +2,7 @@ const Express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const colors = require("colors");
+const path = require("path");
 
 const userRoutes = require("./routes/userRoute");
 const chatRoutes = require("./routes/chatRoutes");
@@ -20,15 +21,32 @@ app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoute);
 
+// deployment
+const __dirname1 = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(Express.static(path.join(__dirname1, "/../client/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname1, "client", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+}
+// 
+
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 
 const server = app.listen(
-  5000,
-  console.log("Running on port " + PORT.yellow.bold)
+  PORT,
+  console.log(`Server running on PORT ${PORT}...`.yellow.bold)
 );
+
 
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
